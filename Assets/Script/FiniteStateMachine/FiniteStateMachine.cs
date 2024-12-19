@@ -7,6 +7,7 @@ public class FiniteStateMachine : MonoBehaviour
 {
     [SerializeField] private TMP_Text stateText;
     public State currentState;
+    private State previousState;
     // Start is called before the first frame update
     void Start()
     {

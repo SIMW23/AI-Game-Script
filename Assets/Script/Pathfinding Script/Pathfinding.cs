@@ -47,6 +47,7 @@ public class Pathfinding
         grid = new Grid<PathNode>(width, height, 10f, Vector3.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
+    //Algorithm to find the most suitable path from the start node (the node the object is on) to the end node (the node the object wants to go to)
     public List<PathNode> FindPath(int startX, int startY, int endX, int endY) 
     {
         PathNode startNode = grid.GetGridObject(startX, startY);
@@ -116,6 +117,7 @@ public class Pathfinding
         return null;
     }
 
+    //algorithm for calculating cost
     private int CalculateDistanceCost(PathNode a, PathNode b)
         {
             int xDistance = Mathf.Abs(a.x - b.x);
@@ -124,7 +126,7 @@ public class Pathfinding
             return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, yDistance) + MOVE_STRAIGHT_COST * remaining;
         }
 
-
+    //List of neighbour nodes
     private List<PathNode> GetNeighbourList(PathNode currentNode)
     {
         List<PathNode> neighbourList = new List<PathNode>();

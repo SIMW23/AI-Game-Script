@@ -10,7 +10,9 @@ public class CharacterMoveExecution : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Getting LevelManager component
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        //Getting CharacterMove component
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -27,6 +29,7 @@ public class CharacterMoveExecution : MonoBehaviour
     {
          if(Input.GetMouseButtonDown(0))
         {
+            //Get the grid and draw a debug line from node 0,0 to the target position
             Vector3 mouseWorldPosition = GetMouseWorldPosition();
             pathfinding.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
             List<PathNode> path = pathfinding.FindPath(0, 0, x, y);
@@ -47,6 +50,7 @@ public class CharacterMoveExecution : MonoBehaviour
             }
         }
         
+        //Setting a node as unwalkable
         if(Input.GetMouseButtonDown(1))
         {
             Vector3 mouseWorldPosition = GetMouseWorldPosition();

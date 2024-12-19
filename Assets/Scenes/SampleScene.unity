@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de332cc2f9a381468cbe5290e4f5d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnX: 2
-  SpawnY: 2
+  SpawnX: 0
+  SpawnY: 0
   player: {fileID: 1264475693838427162, guid: 17c94b9b95709b74f8eb52877ec5a605, type: 3}
   gridOrigin: {x: 5, y: 5, z: 0}
   tilePrefab: {fileID: 3134809375372186163, guid: 7567be93812918648bdd8fa3c1bcb753, type: 3}
@@ -302,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 130}
+  m_AnchoredPosition: {x: 5, y: 161}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &703181607
@@ -754,6 +754,10 @@ PrefabInstance:
     - target: {fileID: 6324672467975922431, guid: 1015d9593335bac438b1998598ad1d62, type: 3}
       propertyPath: m_Name
       value: FSM
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324672467975922431, guid: 1015d9593335bac438b1998598ad1d62, type: 3}
+      propertyPath: m_TagString
+      value: FiniteStateMachine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

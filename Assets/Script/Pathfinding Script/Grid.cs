@@ -26,7 +26,8 @@ public class Grid<TGridObject>
         this.originPosition = originPosition;
 
         gridArray = new TGridObject[width, height];
-
+        
+        //Create a grid object for each cell in the grid based on the width and height
         for (int x = 0; x < gridArray.GetLength(0); x++) 
         {
             for (int y = 0; y < gridArray.GetLength(1); y++) 
@@ -38,12 +39,14 @@ public class Grid<TGridObject>
         bool showDebug = true;
         if (showDebug) 
         {
+            //Create text displaying the coordinates of each cell in the grid
             TextMesh[,] debugTextArray = new TextMesh[width, height];
 
             for (int x = 0; x < gridArray.GetLength(0); x++) 
             {
                 for (int y = 0; y < gridArray.GetLength(1); y++) 
                 {
+                    //Draw debug line for each of the node
                     debugTextArray[x, y] = CreateWorldText(gridArray[x, y]?.ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 30, Color.white, TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);

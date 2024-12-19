@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/// <summary>
+/// This script does not do anything, this is an artifact of testing and trying to find a workaround for an attempt to find a more efficient way to change states
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private IdleState idleState;
@@ -12,10 +17,10 @@ public class GameManager : MonoBehaviour
     {
         //Get FiniteStateMachine component
         stateMachine = GetComponent<FiniteStateMachine>();
-        if(stateMachine == null)
-        {
-            stateMachine = gameObject.AddComponent<FiniteStateMachine>();
-        }
+        // if(stateMachine == null)
+        // {
+        //     stateMachine = gameObject.AddComponent<FiniteStateMachine>();
+        // }
         //Change state to IdleState since by default the player is idle
         //stateMachine.ChangeState(new IdleState(stateMachine));
     }

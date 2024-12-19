@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
             {
                 Vector3 worldPosition = GetWorldPosition(x, y);
                 GameObject tile = Instantiate(tilePrefab, worldPosition, Quaternion.identity);
-                tile.transform.parent = transform;
+                tile.transform.parent = transform; 
             }
         }
     }

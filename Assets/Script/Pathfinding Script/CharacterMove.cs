@@ -16,11 +16,11 @@ public class CharacterMove : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
-        stateMachine = GetComponent<FiniteStateMachine>();
-        if(stateMachine == null)
-        {
-            stateMachine = gameObject.AddComponent<FiniteStateMachine>();
-        }
+        stateMachine = GameObject.FindGameObjectWithTag("FiniteStateMachine").GetComponent<FiniteStateMachine>();
+        // if(stateMachine == null)
+        // {
+        //     stateMachine = gameObject.AddComponent<FiniteStateMachine>();
+        // }
     }
 
     // Update is called once per frame
@@ -45,6 +45,7 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    //updating movement
     private void UpdateMovement()
     {
         
@@ -59,10 +60,7 @@ public class CharacterMove : MonoBehaviour
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 transform.position = transform.position + moveDir * speed * Time.deltaTime;
                 isMoving = true;
-                if (!(stateMachine.currentState is RunState))
-                {
-                    stateMachine.ChangeState(new RunState(stateMachine));
-                }
+                stateMachine.ChangeState(new RunState(stateMachine));
             }
 
             else 
@@ -70,18 +68,24 @@ public class CharacterMove : MonoBehaviour
                 currentPathIndex++;
                 if (currentPathIndex >= pathVectorList.Count) 
                 {
+                    //stop movement
                     pathVectorList = null;
-                    isMoving = false;
-                    if (!(stateMachine.currentState is IdleState))
-                    {
-                        stateMachine.ChangeState(new IdleState(stateMachine));
-                    }
+                    // isMoving = false;
+                    // stateMachine.ChangeState(new IdleState(stateMachine));
+                    StartCoroutine(Attack());
                 }
             }
         }
     }
 
-
+    //attacking coroutine
+    IEnumerator Attack()
+    {
+        stateMachine.ChangeState(new AttackState(stateMachine));
+        isMoving = false;
+        yield return new WaitForSeconds(3f);
+        stateMachine.ChangeState(new IdleState(stateMachine));
+    }
 
 //All of these are for getting the mouse position in the world, with z = 0f
     public static Vector3 GetMouseWorldPosition()
