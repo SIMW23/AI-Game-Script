@@ -17,24 +17,26 @@ public class GameManager : MonoBehaviour
             stateMachine = gameObject.AddComponent<FiniteStateMachine>();
         }
         //Change state to IdleState since by default the player is idle
-        stateMachine.ChangeState(new IdleState(stateMachine));
+        //stateMachine.ChangeState(new IdleState(stateMachine));
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateState();
+        //UpdateState();
     }
 
     private void UpdateState()
     {
-        if(characterMove.isMoving)
+        if(!characterMove.isMoving)
         {
             stateMachine.ChangeState(new RunState(stateMachine));
+            Debug.Log("Change to idle state");
         }
-        else if(!characterMove.isMoving)
+        else if(characterMove.isMoving)
         {
             stateMachine.ChangeState(new IdleState(stateMachine));
+            Debug.Log("Change to run state");
         }
     }
 }

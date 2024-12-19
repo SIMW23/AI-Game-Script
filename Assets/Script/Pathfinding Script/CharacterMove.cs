@@ -59,8 +59,12 @@ public class CharacterMove : MonoBehaviour
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 transform.position = transform.position + moveDir * speed * Time.deltaTime;
                 isMoving = true;
-                Debug.Log(isMoving);
-            } 
+                if (!(stateMachine.currentState is RunState))
+                {
+                    stateMachine.ChangeState(new RunState(stateMachine));
+                }
+            }
+
             else 
             {   
                 currentPathIndex++;
@@ -68,7 +72,10 @@ public class CharacterMove : MonoBehaviour
                 {
                     pathVectorList = null;
                     isMoving = false;
-                    Debug.Log(isMoving);
+                    if (!(stateMachine.currentState is IdleState))
+                    {
+                        stateMachine.ChangeState(new IdleState(stateMachine));
+                    }
                 }
             }
         }

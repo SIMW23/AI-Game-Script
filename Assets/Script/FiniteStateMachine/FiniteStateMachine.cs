@@ -6,7 +6,7 @@ using TMPro;
 public class FiniteStateMachine : MonoBehaviour
 {
     [SerializeField] private TMP_Text stateText;
-    private State currentState;
+    public State currentState;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +33,7 @@ public class FiniteStateMachine : MonoBehaviour
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
+        Debug.Log("exit state");
+     
     }   
 }
